@@ -1,6 +1,5 @@
 package servlet.servlet;
 
-
 import servlet.entity.Film;
 import servlet.service.FilmService;
 import servlet.util.JspPath;
@@ -13,37 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 
-@WebServlet("/jstl")
-public class JstlServlet extends HttpServlet {
+@WebServlet("/all-films")
+public class FindAllServlet extends HttpServlet {
 
     FilmService filmService = FilmService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setAttribute("film", Film.builder()
-                .name("TEST")
-                .build());
-
         req.setAttribute("films", filmService.findAll());
 
-
-        req.setAttribute("films1", Arrays.asList(
-
-                Film.builder()
-                        .id(1L)
-                        .name("TEST1")
-                        .build(),
-
-                Film.builder()
-                        .id(2L)
-                        .name("TEST2")
-                        .build()
-
-        ));
-
         getServletContext()
-                .getRequestDispatcher(JspPath.get("jstl"))
+                .getRequestDispatcher(JspPath.get("all-films"))
                 .forward(req, resp);
 
     }

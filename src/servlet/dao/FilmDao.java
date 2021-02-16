@@ -4,6 +4,8 @@ import servlet.entity.Film;
 import servlet.util.ConnectionManager;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class FilmDao {
@@ -18,6 +20,7 @@ public class FilmDao {
     }
 
     public static final String FIND_FILMS = "SELECT * FROM film_storage.film WHERE id = ?";
+    public static final String FIND_ALL_FILMS = "SELECT * FROM film_storage.film";
     public static final String SAVE = "INSERT INTO film_storage.film (name) VALUES (?)";
 
     public Film save(Film film){
@@ -74,6 +77,37 @@ public class FilmDao {
 
     }
 
+
+    public List<Film> findAll() {
+
+        Optional<Film> film = null;
+        List<Film> films = new ArrayList<>();
+
+        try (Connection connection = ConnectionManager.get()) {
+
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_FILMS);
+
+            while (resultSet.next()) {
+
+                film = Optional.ofNullable(Film.builder()
+
+                        .id(resultSet.getLong("id"))
+                        .name(resultSet.getString("name"))
+                        .year(resultSet.getInt("year"))
+                        .build());
+
+                films.add(film.get());
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return films;
+
+    }
 
 
 }

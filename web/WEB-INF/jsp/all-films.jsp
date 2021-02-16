@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: maxgrovs
-  Date: 12.02.2021
-  Time: 22:19
+  Date: 14.02.2021
+  Time: 12:11
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Title</title>
@@ -13,22 +14,24 @@
 <body>
 
 <div>
-    <br>
+<br>
     <table border="1">
 
         <tr>
             <td bgcolor="#a9a9a9"> id </td>
             <td bgcolor="#a9a9a9"> film_name </td>
         </tr>
-        <tr>
-            <td>  ${ requestScope.film.id }  </td>
-            <td>  ${ requestScope.film.name }  </td>
-        </tr>
+
+    <c:forEach var="film" items="${requestScope.films}">
+
+            <tr>
+                <td>  ${ film.id }  </td>
+                <td>  ${ film.name }  </td>
+            </tr>
+
+    </c:forEach>
 
     </table>
-
-   <%-- <span>${requestScope.film.name} </span>
-    <span>${requestScope.film.id}</span>--%>
 
 </div>
 

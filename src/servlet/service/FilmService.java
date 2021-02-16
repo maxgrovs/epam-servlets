@@ -5,6 +5,7 @@ package servlet.service;
 import servlet.dao.FilmDao;
 import servlet.entity.Film;
 
+import java.util.List;
 import java.util.Optional;
 
 public class FilmService {
@@ -26,6 +27,12 @@ public class FilmService {
     public Film save(Film film){
 
         return FilmDao.getInstance().save(film);
+
+    }
+
+    public List<Film> findAll(){
+
+        return FilmDao.getInstance().findAll();
 
     }
 
