@@ -1,7 +1,11 @@
 package servlet.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import servlet.dto.UserDto;
-import servlet.entity.Film;
+import servlet.entity.Role;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,74 +18,36 @@ public class UserService {
 
     private static final UserService INSTANCE = new UserService();
 
-    public static final Map<Pair<String, String>, UserDto> USER = new HashMap<>();
+    public static final Map<Pair<String, String>, UserDto> USERS = new HashMap<Pair<String, String>, UserDto>(){
+
+        {
+            put(Pair.of("Ivan", "123"), UserDto.builder()
+                    .id(1L)
+                    .role(Role.ADMIN)
+                    .build());
+            put(Pair.of("Sveta", "111"), UserDto.builder()
+                    .id(2L)
+                    .role(Role.USER )
+                    .build());
+
+        }
+
+    };
 
     public Optional<UserDto> login(String username, String password) {
 
+        return Optional.ofNullable(USERS.get(Pair.of(username, password)));
 
-        return null;
     }
 
 
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor(staticName = "of")
+    @Builder
     public static class Pair<F, S> {
-
         private F first;
         private S second;
-
-        public Pair() {
-        }
-
-        public Pair(F first, S second) {
-            this.first = first;
-            this.second = second;
-        }
-
-        public F getFirst() {
-            return first;
-        }
-
-        public void setFirst(F first) {
-            this.first = first;
-        }
-
-        public S getSecond() {
-            return second;
-        }
-
-        public void setSecond(S second) {
-            this.second = second;
-        }
-
-        public Builder builder() {
-            return new Builder();
-        }
-
-        public class Builder {
-
-            private F first;
-            private S second;
-
-            public Builder first(F first) {
-                this.first = first;
-                return this;
-            }
-
-            public Builder second(S second) {
-                this.second = second;
-                return this;
-            }
-
-            public Pair<F, S> build(){
-                return new Pair<>(
-                        this.first,
-                        this.second
-                );
-            }
-
-
-
-        }
-
     }
 
 

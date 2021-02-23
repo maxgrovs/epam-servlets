@@ -14,14 +14,14 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/login" method="post"></form>
+<form action="${pageContext.request.contextPath}/login" method="post">
 
 <label for="username">Username:
     <input id="username" type="text" name="username" value="${param.username}">
 </label><br>
 
 <c:if test="${param.error}">
-    <span>Вы ввели некорректные данные!</span>
+    <span style="color: red">Вы ввели некорректные данные!</span><br>
 </c:if>
 
 <label for="password">Password:
@@ -29,6 +29,8 @@
 </label><br>
 
 <input type="submit" value="Login">
+
+</form>
 
 </body>
 </html>

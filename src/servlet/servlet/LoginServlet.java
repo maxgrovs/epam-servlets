@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         getServletContext()
-                .getRequestDispatcher(JspPath.get("login"))
+                .getRequestDispatcher(JspPath.get("project/login"))
                 .forward(req, resp);
     }
 
@@ -35,9 +35,10 @@ public class LoginServlet extends HttpServlet {
 
         if (user.isPresent()) {
             req.getSession().setAttribute("user", user.get());
-            resp.sendRedirect("/all-films");
+            resp.sendRedirect("/project");
         }else {
-            resp.sendRedirect(String.format("/login?username=%s&error=true",username));
+          //  resp.sendRedirect("/login?username=" + username);
+            resp.sendRedirect(String.format("/login?username=%s&error=true", username));
         }
 
     }

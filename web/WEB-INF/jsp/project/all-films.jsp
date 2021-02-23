@@ -11,14 +11,20 @@
 <head>
     <title>Title</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
 
 </head>
 <body>
 
+<%@include file="header.jsp" %>
+
 <div>
-<br>
-    <table border="1">
+    <table class="table table-striped">
 
         <tr>
             <td bgcolor="#a9a9a9"> id </td>
@@ -38,15 +44,12 @@
 
 </div> <br>
 
-<div>
+<%--<div>
 
     <a href="${pageContext.request.contextPath}/save-film">Save film</a><br>
     <a href="${pageContext.request.contextPath}/logout">Logout</a>
 
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</div>--%>
 
 </body>
 </html>
