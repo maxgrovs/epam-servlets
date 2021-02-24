@@ -1,6 +1,7 @@
 package servlet.dao;
 
 import servlet.entity.Film;
+import servlet.entity.User;
 import servlet.util.ConnectionManager;
 
 import java.sql.*;
@@ -23,26 +24,27 @@ public class UserDao {
     public static final String FIND_ALL_FILMS = "SELECT * FROM film_storage.user";
     public static final String SAVE = "INSERT INTO film_storage.user (name, password) VALUES (?, ?)";
 
-    public Film save(Film film){
+    public User save(User user){
 
         try (Connection connection = ConnectionManager.get()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setString(1, film.getName());
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getPassword());
 
             preparedStatement.executeUpdate();
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 
             if (generatedKeys.next()){
-                film.setId(generatedKeys.getLong(1));
+                user.setId(generatedKeys.getLong(1));
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return film;
+        return user;
     }
 
     public Optional<Film> findOne(Long id){

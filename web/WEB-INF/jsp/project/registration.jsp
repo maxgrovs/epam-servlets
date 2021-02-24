@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/login" method="post">
+<form action="${pageContext.request.contextPath}/registration" method="post">
 
     <br>
     <br>
@@ -45,14 +45,14 @@
 
         <br>
         <div class="col-12">
-            <button class="btn btn-primary" type="submit">Login</button>
+            <button class="btn btn-primary" type="submit">Register</button>
         </div>
 
-        <br>
+      <%--  <br>
         <c:if test="${param.error}">
             <span style="color: red">Вы ввели некорректные данные!</span> <br>
             <a href="${pageContext.request.contextPath}/registration">registration</a>
-        </c:if>
+        </c:if>--%>
 
 
     </div>
