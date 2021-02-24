@@ -27,22 +27,23 @@
     <table class="table table-striped">
 
         <tr>
-            <td bgcolor="#a9a9a9"> id </td>
-            <td bgcolor="#a9a9a9"> film_name </td>
+            <td bgcolor="#a9a9a9"><strong>id</strong></td>
+            <td bgcolor="#a9a9a9"><b>film_name</b></td>
         </tr>
 
-    <c:forEach var="film" items="${requestScope.films}">
+        <c:forEach var="film" items="${requestScope.films}">
 
             <tr>
-                <td>  ${ film.id }  </td>
-                <td>  ${ film.name }  </td>
+                <td> ${ film.id } </td>
+                <td> ${ film.name } </td>
             </tr>
 
-    </c:forEach>
+        </c:forEach>
 
     </table>
 
-</div> <br>
+</div>
+<br>
 
 <%--<div>
 
